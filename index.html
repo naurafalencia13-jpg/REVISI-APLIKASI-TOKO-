@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplikasi Kasir Toko Atika</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Gaya khusus untuk tampilan Cetak Struk / PDF */
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            #area-struck, #area-struck * {
+                visibility: visible;
+            }
+            #area-struck {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 80mm; /* Ukuran standar kertas kasir thermal */
+                padding: 10px;
+                font-family: 'Courier New', Courier, monospace;
+            }
+            .no-print {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans antialiased">
+
+    <!-- Header / Navbar -->
+    <header class="bg-indigo-600 text-white shadow-lg sticky top-0 z-10 no-print">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <i data-lucide="store" class="w-8 h-8"></i>
+                <h1 class="text-2xl font-bold tracking-wide">Toko Atika POS</h1>
+            </div>
+            <div id="tanggal-hari-ini" class="text-sm font-medium bg-indigo-700 px-3 py-1 rounded-lg shadow-inner">
+                <!-- Tanggal Otomatis -->
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-7xl mx-auto px-4 py-6 grid grid-cols-1 lg:grid-cols-3 gap-6 no-print">
+        
+        <!-- Kolom Produk (Kiri - 2 Kolom) -->
+        <section class="lg:col-span-2 space-y-4">
+            
+            <!-- Filter Kategori & Pencarian -->
+            <div class="bg-white p-4 rounded-xl shadow-sm flex flex-col md:flex-row gap-4 justify-between items-center">
+                <!-- Tombol Kategori -->
+                <div class="flex flex-wrap gap-2 w-full md:w-auto">
+                    <button onclick="filterKategori('semua')" class="btn-kategori bg-indigo-600 text-white px-4 py-2 rounded-lg text-sm font-semibold shadow hover:bg-indigo-700 transition">Semua</button>
+                    <button onclick="filterKategori('makanan')" class="btn-kategori bg-gray-100 text-gray-700 px-4 py-2 rounded-lg text-sm font-semibold hover:bg-gray-200 transition">Makanan</button>
+                    <button onclick="filterKategori('minuman')" class="btn-kategori bg-gray-100 text-gray-700 px-4 py-2 rounded-lg text-sm font-semibold hover:bg-gray-200 transition">Minuman</button>
+                    <button onclick="filterKategori('cemilan')" class="btn-kategori bg-gray-100 text-gray-700 px-4 py-2 rounded-lg text-sm font-semibold hover:bg-gray-200 transition">Cemilan</button>
+                </div>
+                <!-- Input Pencarian -->
+                <div class="relative w-full md:w-64">
+                    <input type="text" id
